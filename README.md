@@ -1,4 +1,4 @@
-For Task A, I used Ubuntu.
+For Task A, if you want to localize this deployment, I have provided the Ubuntu tutorial here.
 
  Install npm
  
