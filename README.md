@@ -1,11 +1,15 @@
  Install npm
-'''
+ 
+···
  sudo apt install npm
-'''
+···
+
  Install node
-'''
+ 
+···
  npm install node
-'''
+···
+
  Install missing dependence
 
  npm install
