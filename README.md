@@ -1,27 +1,27 @@
 For Task A, if you want to localize this deployment, I have provided the Ubuntu tutorial here.
 
- Install npm
+Install npm
  
 ~~~
- sudo apt install npm
+sudo apt install npm
 ~~~
 
- Install node
+Install node
  
 ~~~
- npm install node
+npm install node
 ~~~
 
- Install missing dependence
+Install missing dependence
 
 ~~~
- npm install
+npm install
 ~~~
 
- Run demo
+Run demo
 
 ~~~
- node app.js
+node app.js
 ~~~
 
- Open your browser and jump to: http://localhost:5000
+Open your browser and jump to: http://localhost:5000
