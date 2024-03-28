@@ -1,8 +1,8 @@
  Install npm
  
-···
+~~~
  sudo apt install npm
-···
+~~~
 
  Install node
  
