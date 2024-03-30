@@ -11,171 +11,94 @@
     </style>
  </head>
  <body>
-
-
-	<div id='chartContainer2'>
-		<h2>Survivors by Passenger Class (Bar)</h2>
-
-		<script type="text/javascript">
-			var svg2 = dimple.newSvg('#chartContainer2', 600,400);
-			d3.csv('titanic1.csv', function(data) {
-			var ChartInstance = new dimple.chart(svg2,data);
-			ChartInstance.setBounds(60,30,510,305);
-			var x = ChartInstance.addCategoryAxis('x', 'Passenger Class');
-			// x.addOrderRule('Type');
-			var y = ChartInstance.addPctAxis('y', 'Count');
-			//y.showbycent = true;
-			//var y = ChartInstance.addMeasureAxis('y', 'Count');
-			var s = ChartInstance.addSeries("Status", dimple.plot.bar);
-			ChartInstance.addLegend(60, 10, 510, 20, "right");
-
-
-
-			ChartInstance.draw(1000);	
-
-			 });
-		</script>
-	</div>
+	<div id="chartContainer1">
+		<h1>Total Sales Across All Stores (Pie chart)</h1>
 	
-	<div id='PiechartContainer12'>
-		<h2>Passenger Share By Class 1, Class 2, Class 3</h2>
-        <h4><i>The share of class 3 passengers was highest </i><h4>
-		<script type="text/javascript">
-			var svg12 = dimple.newSvg("#PiechartContainer12", 590, 400);
-			d3.csv("titanic_train.csv", function (data) {
-			var ChartInstance = new dimple.chart(svg12, data);
-			ChartInstance.setBounds(20, 20, 460, 360)
-			ChartInstance.addMeasureAxis("p", "Passenger Class");
-			ChartInstance.addSeries("Passenger Class", dimple.plot.pie);			
-			ChartInstance.addLegend(500, 20, 90, 300, "left");
-			ChartInstance.draw();
+		<script>
+			// 读取CSV数据并绘制图表
+			d3.csv("Walmart_Store_sales.csv", function(data) {
+				// 创建画布
+				var svg = dimple.newSvg("#chartContainer1", 1000, 800);
+	
+				// 创建图表
+				var chart = new dimple.chart(svg, data);
+	
+				// 设置标签和数值字段
+				var pie = chart.addMeasureAxis("p", "Weekly_Sales");
+	
+				// 添加饼图
+				var slices = chart.addSeries("Store", dimple.plot.pie);
+					
+				// 添加图例
+				var legend = chart.addLegend(60, 10, 700, 20, "right");
+				legend.fontSize = "12px";
+	
+				// 渲染图表
+				chart.draw();
 			});
 		</script>
-	</div> 
-	
-	<div id='PiechartContainer1'>
-		<h2>Survivors by Gender (Pie chart)</h2>
-		<h4><i>Females were given priority during the rescue</i><h4>
-		<script type="text/javascript">
-			var svg1 = dimple.newSvg("#PiechartContainer1", 590, 400);
-			d3.csv("titanic_train.csv", function (data) {
-			var ChartInstance = new dimple.chart(svg1, data);
-			ChartInstance.setBounds(20, 20, 460, 360)
-			ChartInstance.addMeasureAxis("p", "Survived");
-			ChartInstance.addSeries("Sex", dimple.plot.pie);
-			ChartInstance.addLegend(500, 20, 90, 300, "left");
-			ChartInstance.draw();
-			});
-		</script>
-	</div>  
-  	
-  	<div id='chartContainer4'>
-	<h2>Survivors by Age</h2>
-	<h4><i>Senior passengers were given priority to Life-Boats as seen in the movie</i><h4>
- 	<script type="text/javascript">
- 	var svg4 = dimple.newSvg('#chartContainer4', 600,400);
- 		d3.csv('titanic1.csv', function(data) {
-   		var ChartInstance = new dimple.chart(svg4,data);
-  		ChartInstance.setBounds(60,30,510,305);
-  		var x = ChartInstance.addCategoryAxis('x', 'Age');
-       // x.addOrderRule('Type');
-  		var y = ChartInstance.addPctAxis('y', 'Count');
-  		//y.showbycent = true;
-  		//var y = ChartInstance.addMeasureAxis('y', 'Count');
-        var s = ChartInstance.addSeries("Status", dimple.plot.bar);
-        ChartInstance.addLegend(60, 10, 510, 20, "right");
-
-
-
- 		
-		ChartInstance.draw(1000);	
-
-		 });
-</script>
-  	</div>
- 
-	<div id='chartContainer8'>
-	<h2>Survivors by Embarked </h2>
-	<h4><i>Most 1st Class passengers aboarded the ship at Southampton UK</i><h4>
-	<script type="text/javascript">
-	var svg8 = dimple.newSvg('#chartContainer8', 600,400);
-	d3.csv('titanic1.csv', function(data) {
-	var ChartInstance = new dimple.chart(svg8,data);
-	ChartInstance.setBounds(60,30,510,305);
-	var x = ChartInstance.addCategoryAxis('x', 'Embarked');
-	// x.addOrderRule('Type');
-	var y = ChartInstance.addPctAxis('y', 'Count');
-	//y.showbycent = true;
-	//var y = ChartInstance.addMeasureAxis('y', 'Count');
-	var s = ChartInstance.addSeries("Status", dimple.plot.bar);
-	ChartInstance.addLegend(60, 10, 510, 20, "right");
-
-
-
-		ChartInstance.draw(1000); 
-
-
-	});
-	</script>
 	</div>	
-	
-		<div id='PiechartContainer2'>
-		<h2>Survivors by Embarked (Pie chart)</h2>
-		<h4><Most 3rd Class passengers aboard the ship at Cherbourg , who were mostly from southern france & North Africa </i><h4>
-		
-		<script type="text/javascript">
-			var svg9 = dimple.newSvg("#PiechartContainer2", 590, 400);
-			d3.csv("titanic_train.csv", function (olddata) {
-			data =modify_data(olddata);			 
-			var ChartInstance = new dimple.chart(svg9, data);
-			ChartInstance.setBounds(20, 20, 460, 360)
-			ChartInstance.addMeasureAxis("p", "Survived");
-			ChartInstance.addSeries("Embarked", dimple.plot.pie);
-			ChartInstance.addLegend(500, 20, 90, 300, "left");
-			ChartInstance.draw();
-			});
-		</script>
-		
-		<script type="text/javascript">
-		    var ctr = 0;
-			function modify_data(data){
-				data.forEach(myFunction);	
-				return data;				
-			};
-			function myFunction(item) {
-			    if((item["Embarked"])=='S'){
-					(item["Embarked"])='Southampton';
-				} 
-				else if((item["Embarked"])=='C'){
-					(item["Embarked"])='Cherbourg';
-							} 	
-				else if((item["Embarked"])=='Q'){
-					(item["Embarked"])='Queenstown';
-				} 		
-				else {
-					(item["Embarked"])='NA';
-				};				
-			}
-		</script>
-	</div>
 
-		<div id="chartContainer10">
-		<h2>Passenger survival rate By Class</h2>
-		 
-		<h4><i>Shows that first class passengers were given priority to Life-Boats</i><h4>
-		<script type="text/javascript">
-			var svg10 = dimple.newSvg("#chartContainer10", 590, 400);
-			d3.csv("titanic_train.csv", function (data) {
-			var myChart = new dimple.chart(svg10, data);
-			  myChart.setBounds(60, 45, 510, 315)
-			  myChart.addCategoryAxis("x", "Passenger Class");
-			  myChart.addMeasureAxis("y", "Fare");
-			  myChart.addSeries("Survived", dimple.plot.bar);
-			  myChart.addLegend(200, 10, 380, 20, "right");
-			  myChart.draw();
+	<div id="chartContainer2">
+		<h1>Store 1 Sales - Temperature (Scatter Plot)</h1>
+
+		<script>
+			// Load data from CSV
+			d3.csv("Walmart_Store_sales.csv", function(data) {
+				// Filter data for Store 1
+				var store1Data = data.filter(function(d) {
+					return d.Store === "1";
+				});
+		
+				// Create a new dimple chart
+				var svg = dimple.newSvg("#chartContainer2", 1800, 600);
+		
+				// Define chart
+				var chart = new dimple.chart(svg, store1Data);
+		
+				// Set x-axis as Temperature and sort it
+				var x = chart.addCategoryAxis("x", "Temperature");
+				x.addOrderRule("Temperature");
+			
+				// Set y-axis as Weekly_sales
+				var y = chart.addMeasureAxis("y", "Weekly_Sales");
+			
+				// Add scatter plot
+				chart.addSeries(null, dimple.plot.scatter);
+			
+				// Draw chart
+				chart.draw();
 			});
 		  </script>
-		</div>
+	</div>
+
+	<div id="chartContainer3">
+		<h1>Store 1 Sales - Temperature (Scatter Plot)</h1>
+
+		<script>
+			// 读取CSV数据并绘制图表
+			d3.csv("Walmart_Store_sales.csv", function(data) {
+				// 创建画布
+				var svg = dimple.newSvg("#chartContainer3", 800, 600);
+	
+				// 创建图表
+				var chart = new dimple.chart(svg, data);
+	
+				// 设置横轴
+				var x = chart.addCategoryAxis("x", "Store");
+	
+				// 设置纵轴
+				var y = chart.addMeasureAxis("y", "Weekly_Sales");
+				y.overrideMin = 0; // 确保销售额的最小值为0
+	
+				// 添加柱形图
+				var bars = chart.addSeries(null, dimple.plot.bar);
+	
+				// 渲染图表
+				chart.draw();
+			});
+		</script>
+	</div>
 
  </body>
  </html>
