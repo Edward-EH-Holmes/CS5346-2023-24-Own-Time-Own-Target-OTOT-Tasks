@@ -73,29 +73,45 @@
 	</div>
 
 	<div id="chartContainer3">
-		<h1>Store 1 Sales - Temperature (Scatter Plot)</h1>
+		<h1>Average Fuel Price For Each Store In The Area (Bar Chart)</h1>
 
 		<script>
 			// 读取CSV数据并绘制图表
 			d3.csv("Walmart_Store_sales.csv", function(data) {
-				// 创建画布
-				var svg = dimple.newSvg("#chartContainer3", 800, 600);
-	
-				// 创建图表
-				var chart = new dimple.chart(svg, data);
-	
-				// 设置横轴
-				var x = chart.addCategoryAxis("x", "Store");
-	
-				// 设置纵轴
-				var y = chart.addMeasureAxis("y", "Weekly_Sales");
-				y.overrideMin = 0; // 确保销售额的最小值为0
-	
-				// 添加柱形图
-				var bars = chart.addSeries(null, dimple.plot.bar);
-	
-				// 渲染图表
-				chart.draw();
+			// 使用D3.js进行数据处理，计算每个商店该地区Fuel_Price的平均值
+			var groupedData = d3.nest()
+								.key(function(d) { return d.Store; })
+								.rollup(function(v) { 
+								return d3.mean(v, function(d) { return d.Fuel_Price; }); 
+								})
+								.entries(data);
+
+			// 将处理后的数据转换为Dimple.js所需的格式
+			var formattedData = groupedData.map(function(d) {
+				return {
+				Store: d.key,
+				Average_Fuel_Price: d.values
+				};
+			});
+
+			// 创建画布
+			var svg = dimple.newSvg("#chartContainer3", 800, 600);
+
+			// 创建图表
+			var chart = new dimple.chart(svg, formattedData);
+
+			// 设置横轴
+			var x = chart.addCategoryAxis("x", "Store");
+
+			// 设置纵轴
+			var y = chart.addMeasureAxis("y", "Average_Fuel_Price");
+			y.overrideMin = 0; // 确保销售额的最小值为0
+
+			// 添加柱形图
+			var bars = chart.addSeries(null, dimple.plot.bar);
+
+			// 渲染图表
+			chart.draw();
 			});
 		</script>
 	</div>
