@@ -6,7 +6,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //our only route
 app.get('/', function (req, res) {
-   res.sendFile(__dirname + '/TaskA1.html');
+   res.sendFile(__dirname + '/TaskA.html');
 })
 
 var server = app.listen(process.env.PORT || 5000, function () {
